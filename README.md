@@ -1,11 +1,28 @@
 ## Android sample MVVM architecture project using with Dagger 2, Retrofit, Rxjava, Room, Navigation component, Livedata
 
+## Presentation Layer
+MVVM pattern is integrated to facilitate testing and to allow separating the user interface logic from business logic.
+
+As Views were passive in MVP, here the View layer is much more flexibile as an indefinite number of Views can bind to a ViewModel. Also, MVVM enforces a clear separation between Views and their master - ViewModel, as the latter holds no reference to Views. The model layer is completely isolated and centralized through the repository pattern.
+
+![Presentation](https://github.com/catalinghita8/android-mvvm-rxjava-dagger2/blob/master/readme_pics/mvvm_diagram.png)
+
 ## Structure
 
 <p align="center">
   <img width="500" height="330" src="https://github.com/umutbayramoglu/mvvm-dagger2-databinding-retrofit-rxjava2/blob/master/screenshots/mvvm2.png?raw=true">
 </p>
 
+The model layer is structured on repository pattern so that the ViewModel has no clue on the origins of the data. 
+
+The repository handles data interactions and transactions from two main data sources - local and remote:
+- `RemoteDataSource` defined by a REST API consumed with [Retrofit]
+- `LocalDataSource` defined by a SQL database consumed with [Room]
+
+## Dependency Injection
+Dagger2 is used to externalize the creation of dependencies from the classes that use them. Android specific helpers are provided by `Dagger-Android` and the most significant advantage is that they generate a subcomponent for each `Activity` through a new code generator.
+The below diagram illustrates the most significant relations between components and modules:
+![Dependecy](https://miro.medium.com/max/1838/1*6FSqZ_hJPUSQVHMZosTtEw.png)
 
 ## Screenshots
 <p align="center">
